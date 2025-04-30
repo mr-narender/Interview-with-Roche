@@ -1,0 +1,7 @@
+[project]
+name = "interview-with-roche"
+version = "0.1.0"
+description = "A simple Django REST API for managing product inventory, built for an interview task."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["django>=5.2", "djangorestframework>=3.16.0"]

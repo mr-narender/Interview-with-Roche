@@ -81,14 +81,13 @@ curl http://localhost:8000/api/products/
 ## 🧪 Running Tests
 
 ```bash
-python manage.py test inventory
-
-Found 3 test(s).
+> python manage.py test inventoryApp
+Found 4 test(s).
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
-...
+....
 ----------------------------------------------------------------------
-Ran 3 tests in 0.005s
+Ran 4 tests in 0.007s
 
 OK
 Destroying test database for alias 'default'...

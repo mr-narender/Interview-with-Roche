@@ -48,3 +48,19 @@ class ProductAPITestCase(TestCase):
         self.assertEqual(len(data), 2)
         self.assertIn("1", data)
         self.assertEqual(data["1"]["product_name"], "Laptop")
+
+    def test_get_single_product(self):
+        # Create a product and capture its ID
+        product = Product.objects.create(
+            product_name="Keyboard", price=99.99, quantity=30
+        )
+
+        # Make GET request to fetch this product by ID
+        response = self.client.get(f"/api/products/{product.id}/")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = response.json()
+        self.assertIn(str(product.id), data)
+        self.assertEqual(data[str(product.id)]["product_name"], "Keyboard")
+        self.assertEqual(data[str(product.id)]["price"], float(product.price))
+        self.assertEqual(data[str(product.id)]["quantity"], product.quantity)

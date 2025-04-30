@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-0%aq&1^c%khd26&2lj9mlz3w3$h3j)kao%s1s!x%bjb2x@v&^s"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.environ.get("IS_DEV") else False
 
 ALLOWED_HOSTS = []
 
@@ -74,13 +75,26 @@ WSGI_APPLICATION = "InterviewWithRoche.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if os.environ.get("IS_DEV"):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
-
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "snowflake.sqlalchemy",
+            "NAME": "your_snowflake_database_name",  # Database name
+            "USER": "your_snowflake_username",  # Username
+            "PASSWORD": "your_snowflake_password",  # Password
+            "ACCOUNT": "your_snowflake_account_id",  # Account identifier (you can find this in your Snowflake UI)
+            "WAREHOUSE": "your_snowflake_warehouse",  # Warehouse to be used for queries
+            "SCHEMA": "your_snowflake_schema",  # Schema name (optional)
+            "DATABASE": "your_snowflake_database",  # Database name (optional)
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

@@ -93,3 +93,9 @@ Ran 3 tests in 0.005s
 OK
 Destroying test database for alias 'default'...
 ```
+
+## Snowflake Connector
+
+Repective depdencies should be installed automatically when creating virtualenv, however some configuaration needs tweaking.
+
+To do that, please Open your settings.py file and locate the DATABASES configuration. Replace it with the respective Snowflake-specific settings as needed.

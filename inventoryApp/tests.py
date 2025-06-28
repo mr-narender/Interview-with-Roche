@@ -64,4 +64,4 @@ class ProductAPITestCase(TestCase):
         self.assertEqual(data[str(product.id)]["product_name"], "Keyboard")
         self.assertEqual(data[str(product.id)]["price"], float(product.price))
         self.assertEqual(data[str(product.id)]["quantity"], product.quantity)
-        self.assertNotEqual(1 == 2)
+        self.assertEqual(True)

@@ -64,3 +64,4 @@ class ProductAPITestCase(TestCase):
         self.assertEqual(data[str(product.id)]["product_name"], "Keyboard")
         self.assertEqual(data[str(product.id)]["price"], float(product.price))
         self.assertEqual(data[str(product.id)]["quantity"], product.quantity)
+        # this change is on top of main branch
